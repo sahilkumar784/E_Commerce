@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body >
+    <header>
+        <h1>Checkout</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+    </nav>
+    <div class="credit-card-container">
+        <form id="myForm">
+            <div class="ist">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <span id="nameError" class="error"></span><br><br>
+        </div>
+
+
+        <div class="tst">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <span id="emailError" class="error"></span><br><br>
+        </div>
+
+            <div class="erm">
+                <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <span id="passwordError" class="error"></span><br><br>
+        </div>
+        <div>
+
+            <label for="address">Address:</label><br>
+            <textarea id="address" name="address" ></textarea>
+            <span id="addressError" class="error"></span><br><br>
+        </div>
+    </div>
+
+            <label for="card">Credit Card Number:</label><br>
+            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="card" name="card"><br><br>
+            <span id="creditError" class="error"></span><br><br>
+
+            <div style="margin-left: 30%;">
+            <button type="button" onclick="validateForm()">Complete Purchase</button>
+        </div>
+          </form>
+        
+          <script>
+            function validateForm() {
+              // Clear previous error messages
+              document.getElementById("nameError").textContent = "";
+              document.getElementById("emailError").textContent = "";
+              document.getElementById("passwordError").textContent = "";
+              document.getElementById("addressError").textContent = "";
+
+        
+              let isValid = true;
+        
+              // Name validation
+              const name = document.getElementById("name").value.trim();
+              if (name === "") {
+                document.getElementById("nameError").textContent = "Name is required.";
+                isValid = false;
+              }
+        
+              // Email validation
+              const email = document.getElementById("email").value.trim();
+              const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+              if (email === "") {
+                document.getElementById("emailError").textContent = "Email is required.";
+                isValid = false;
+              } else if (!emailPattern.test(email)) {
+                document.getElementById("emailError").textContent = "Invalid email format.";
+                isValid = false;
+              }
+        
+              // Password validation
+              const password = document.getElementById("password").value.trim();
+              if (password === "") {
+                document.getElementById("passwordError").textContent = "Password is required.";
+                isValid = false;
+              } else if (password.length < 6) {
+                document.getElementById("passwordError").textContent = "Password must be at least 6 characters long.";
+                isValid = false;
+              }
+
+              const address = document.getElementById("address").value.trim();
+              if (address === "") {
+                document.getElementById("addressError").textContent = "address is required.";
+                isValid = false;
+              }
+
+              const card = document.getElementById("card").value.trim();
+              const cardPattern = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
+              if (card === "") {
+                document.getElementById("creditError").textContent = "credit card number is required.";
+                isValid = false;
+              } else if (card.length < 10) {
+                document.getElementById("cardError").textContent = "credit card number must be of 10 numbers.";
+                isValid = false;
+              }
+        
+              // If all validations pass
+              if (isValid) {
+                alert("Form submitted successfully!");
+              }
+            }
+          </script>
+    </div>
+    <footer>
+        <p>&copy; 2024 Online Store. All rights reserved.</p>
+    </footer>
+</body>
+</html>
